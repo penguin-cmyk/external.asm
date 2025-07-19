@@ -1,27 +1,17 @@
 %include "utils.asm"
 
 section .text align=16
+    global dm
+
     extern RBX_NAME
     extern read_memory
     extern write_memory
-    extern read_string
-    global dm
-
-    extern realloc
-    extern strcmp
-    extern printf
-    extern malloc
-    extern free
 
     extern NAME_POINTER
     extern FMT_STR
     extern DM_POINTER
     extern DATAMODEL
     extern BASEADRESS
-
-    extern PLAYERS_STR
-    extern CHILD_TO_FIND
-    extern FOUND_CHILD
 
 ; ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
