@@ -2,6 +2,8 @@
 **A work-in-progress external for Roblox written entirely in x86_64 assembly using the NASM compiler.**  
 This project is purely experimental and is not intended for practical use.
 
+I AM CURRENTLY REWRITING THIS since the current source is a bit messed up 
+
 ---
 
 ## 🛠 Requirements
