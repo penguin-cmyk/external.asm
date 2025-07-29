@@ -1,15 +1,22 @@
-A work in progress external written in purely assembly using the intel syntax and x86_64 architecture.
+## 🛠️ external.asm — A Pure Assembly External (WIP)
 
-Currently only modifies the walkspeed of the humanoid and thats about it.
+Welcome! This is a **work-in-progress external project** written entirely in x86_64 assembly using Intel syntax.
 
-As my compiler I choose nasm and I have linked a build script in scripts/build.sh.
+Right now, it features a simple functionality: modifying the walkspeed of a humanoid. It’s minimal, but it's a solid foundation - and there’s more to come! Execution features might be next on the list.
 
-Maybe I'll work on execution next
+The project uses **NASM** as the assembler, and a build script is included under scripts/build.sh for convenience.
 
 ---
 
-To build this project you will ned `MSYS2 MINGW64` and the gcc and nasm compiler. 
+## 🔧 Requirements
 
+To build this project, you'll need:
+  - [MSYS2 MINGW64](https://www.msys2.org/)
+  - gcc
+  - nasm
+---
+
+## 📦 Building the Project
 
 1. Clone the repository:
 ```bash
