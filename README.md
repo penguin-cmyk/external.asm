@@ -1,4 +1,4 @@
-# 🛠️ external.asm — A Pure Assembly External (WIP)
+# 🛠️ external.asm - A Pure Assembly External (WIP)
 
 Welcome! This is a **work-in-progress external project** written entirely in x86_64 assembly using Intel syntax.
 
