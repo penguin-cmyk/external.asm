@@ -1,6 +1,10 @@
-A work in progress external written in purely assembly using the intel syntax and x86_64 architecture. 
+A work in progress external written in purely assembly using the intel syntax and x86_64 architecture.
+
+Currently only modifies the walkspeed of the humanoid and thats about it.
 
 As my compiler I choose nasm and I have linked a build script in scripts/build.sh.
+
+Maybe I'll work on execution next
 
 ---
 
