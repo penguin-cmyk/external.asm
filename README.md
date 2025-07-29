@@ -1,76 +1,28 @@
+A work in progress external written in purely assembly using the intel syntax and x86_64 architecture. 
 
-**A work-in-progress external for Roblox written entirely in x86_64 assembly using the NASM compiler.**  
-This project is purely experimental and is not intended for practical use.
-
-I AM CURRENTLY REWRITING THIS since the current source is a bit messed up 
+As my compiler I choose nasm and I have linked a build script in scripts/build.sh.
 
 ---
 
-## 🛠 Requirements
+To build this project you will ned `MSYS2 MINGW64` and the gcc and nasm compiler. 
 
-To build the project, you'll need to configure CMake with NASM support and provide the necessary flags.
 
-### CMake Setup
-
-Make sure to include the following in your `CMakeLists.txt`:
-
-```cmake
-enable_language(ASM_NASM)
-
-set(NASM_INCLUDE_DIR "${CMAKE_SOURCE_DIR}/src")
-set(NASM_INCLUDE_FLAGS "-I${NASM_INCLUDE_DIR}")
-
-set_source_files_properties(
-    src/external.asm
-    src/mem.asm
-    src/utils.asm
-    src/globals.asm
-    PROPERTIES
-    COMPILE_FLAGS "${NASM_INCLUDE_FLAGS}"
-)
-
-add_executable(
-    external
-    src/external.asm
-    src/utils.asm
-    src/globals.asm
-    src/mem.asm
-)
+1. Clone the repository:
+```bash
+git clone https://github.com/penguin-cmyk/external.asm.git
 ```
 
----
-## 🔗 Integration with C
-
-To use this project in a C application, import the following external assembly functions:
-
-```c
-extern DWORD rbx_pid(void);
-extern HANDLE open_handle(DWORD pid);
-extern uintptr_t rbx_base(void);
-extern void dm(void);
+2. Navigate into the project directory:
+```
+cd external.asm
 ```
 
-## Example usage
-
-Call them in the following order to initialize and execute:
-
-```c
-int main(void) {
-	// variables were only there for debugging!
-    DWORD rbx = rbx_pid();
-    HANDLE rbxHandle = open_handle(rbx);
-
-    uintptr_t baseAddr = rbx_base();
-
-    dm();
-
-    return 0;
-}
+3. Navigate into the scripts folder:
+```bash
+cd scripts
 ```
 
----
-
-## ⚠️ Disclaimer
-
-This is not a finished or production-ready project.  
-There is no proper build system or full CMake configuration beyond the basic integration example above. It is meant purely for experimentation and low-level learning.
+4. Run the build script:
+```nginx
+sh build.sh
+```
