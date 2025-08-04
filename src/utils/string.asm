@@ -7,15 +7,9 @@ section .data
     EMPTY_STRING   db "", 0
 
 section .text 
-    extern read_memory
-    extern write_memory
-
-    extern malloc 
-    extern free
-    extern printf
-
-    global copy_string
-    global read_string
+    extern read_memory, write_memory
+    extern malloc, free, prinf 
+    global copy_string, read_string
 
 ; read / write memory 
 ; rdx = address

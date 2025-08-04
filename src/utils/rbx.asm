@@ -1,10 +1,9 @@
 section .data 
     global CHILD
 
-    extern DATAMODEL_POINTER
-    extern DATAMODEL
-    extern BaseAdress
-
+    extern DATAMODEL_POINTER, DATAMODEL, BaseAdress, PLAYERS_SERVICE
+    extern Players, ModelInstance, LocalPlayer
+    
     NAME_POINTER     dq 0
     CLASS_DESCRIPTOR dq 0
     CLASS_POINTER    dq 0
@@ -21,31 +20,18 @@ section .data
     STR_FORMAT      db "%s", 10, 0
     
 section .text 
-    extern read_memory
-    extern read_string
+    extern read_memory, read_string
 
-    global obj_name
-    global obj_class
-    global get_datamodel
-    global get_children
-    global find_first_child
-    global copy_string_children
-
-    extern STRING_BUFFER
-    extern CHILD_TO_FIND
-    extern copy_string
-
-    extern printf
-    extern malloc
-    extern free 
-    extern strcmp 
+    global obj_name, obj_class, get_datamodel, get_children, find_first_child, copy_string_children, init_rbx
+    extern STRING_BUFFER, CHILD_TO_FIND, copy_string
+    extern malloc, free, strcmp 
 
 get_datamodel:
     sub rsp, 0x40
 
-    ; read_memory( BaseAddress + 0x68D7308, &Datamodel_Pointer, sizeof(uintptr_t))
+    ; read_memory( BaseAddress + 0x6ED6E38, &Datamodel_Pointer, sizeof(uintptr_t))
     mov rdx, [rel BaseAdress]
-    add rdx, 0x68D7308
+    add rdx, 0x6ED6E38
     lea r8,  [rel DATAMODEL_POINTER]
     mov r9,  8
     call read_memory
@@ -248,3 +234,47 @@ copy_string_children:
     call copy_string
     add rsp, 0x20 
     ret 
+
+
+init_rbx:
+    sub rsp, 0x100
+    ; ChildToFind = Players
+    lea rsi, [rel Players]
+    call copy_string_children
+
+    ; find_first_child( DataModel, Method: obj_class, "Players" )
+    mov rcx, [rel DATAMODEL]
+    mov rdx, obj_class
+    call find_first_child
+
+    cmp qword [rel CHILD], 0
+    je done_main
+
+    mov rsi, [rel CHILD]
+    mov qword [rel PLAYERS_SERVICE], rsi 
+
+    ; read_memory( rsi + 0x128, &LocalPlayer, sizeof(uintptr_t) )
+    mov rdx, rsi 
+    add rdx, 0x128
+    lea r8,  [rel LocalPlayer]
+    mov r9,  8
+    call read_memory
+
+    cmp qword [rel LocalPlayer], 0 
+    je done_main 
+
+    ; read_memory( LocalPlayer + 0x340, &ModelInstance, sizeof(uintptr_t) )
+    mov rdx, [rel LocalPlayer]
+    add rdx, 0x328
+    lea r8,  [rel ModelInstance]
+    mov r9,  8 
+    call read_memory
+
+    cmp qword [rel ModelInstance], 0 
+    je done_main
+    add rsp, 0x100
+    ret 
+
+done_main:
+    add rsp, 0x100 
+    ret    

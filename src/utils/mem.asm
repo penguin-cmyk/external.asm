@@ -8,9 +8,7 @@
 section .data 
     extern PROCESS_NAME 
     
-    global ProccesId
-    global BaseAdress
-    global Handle 
+    global ProccesId, BaseAdress, Handle 
 
     BaseAdress      dq 0
     ProccesId       dd 0
@@ -23,23 +21,12 @@ section .text
     ; call get_pid first
     ; then call open_handle 
 
-    global get_pid                                   
-    global rebase
-    global open_handle                                  
-    global get_base_address
+    global get_pid, rebase, open_handle, get_base_address
+    global read_memory, write_memory
 
-    global read_memory
-    global write_memory
-
-    extern CreateToolhelp32Snapshot
-    extern Process32First
-    extern Module32First
-    extern Process32Next
-    extern CloseHandle
-    extern OpenProcess
-
-    extern ReadProcessMemory
-    extern WriteProcessMemory
+    extern CreateToolhelp32Snapshot, Process32First, Module32First, Process32Next
+    extern CloseHandle, OpenProcess
+    extern ReadProcessMemory, WriteProcessMemory
 
     extern strcmp 
 
