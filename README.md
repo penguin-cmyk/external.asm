@@ -2,7 +2,7 @@
 
 Welcome! This is a **work-in-progress external project** written entirely in x86_64 assembly using Intel syntax.
 
-Right now, it features a simple functionality: modifying the walkspeed of a humanoid. It’s minimal, but it's a solid foundation - and there’s more to come! Execution features might be next on the list.
+Right now, it features a simple functionality: modifying the walkspeed of a humanoid and changing the position of parts.
 
 The project uses **NASM** as the assembler, and a build script is included under scripts/build.sh for convenience.
 
